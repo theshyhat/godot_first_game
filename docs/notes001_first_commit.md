@@ -92,17 +92,19 @@ const GRID_W := 4 # := is integer inference
 const GRID_H := 4
 const TILE_SIZE := 96 # defines how large each tile is in pixels
 
-# A Vector2 is a 2D float vector (x, and y)
-const GRID_ORIGIN := Vector2(64, 64)
+# A Vector2 is a 2D float vector (x, and y), and Vectors are math objects that contain sets of numbers which represent directions, positions, or offsets
+const GRID_ORIGIN := Vector2(64, 64) # Float Vector used for drawing
 
-var player_cell := Vector2i(0, 0)
+var player_cell := Vector2i(0, 0) # Integer Vector used in grid movement
 
 func _ready() -> void:
 	queue_redraw()
 
 func _unhandled_input(event: InputEvent) -> void:
-	var move := Vector2i.ZERO
+    # the move variable is initialized to Vector2i.ZERO, which is (0,0), i.e., no movement
+    var move := Vector2i.ZERO
 
+    # each of the event methods indicate a change in the movement coordinates by 1 on the grid
 	if event.is_action_pressed("move_up"):
 		move = Vector2i(0, -1)
 	elif event.is_action_pressed("move_down"):
@@ -114,10 +116,13 @@ func _unhandled_input(event: InputEvent) -> void:
 	else:
 		return
 
+    # move the player position based on their current cell, modified by the move direction
 	var next := player_cell + move
+    # the clamp function restricts values to a certain range, i.e., the bounds of the game grid
 	next.x = clamp(next.x, 0, GRID_W - 1)
 	next.y = clamp(next.y, 0, GRID_H - 1)
 
+    # if the move didn't actually move the player (if it bumped up against a grid boundary), then don't redraw the screen
 	if next != player_cell:
 		player_cell = next
 		queue_redraw()
