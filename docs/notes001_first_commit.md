@@ -97,6 +97,8 @@ const GRID_ORIGIN := Vector2(64, 64) # Float Vector used for drawing
 
 var player_cell := Vector2i(0, 0) # Integer Vector used in grid movement
 
+# a function that is run once per node when the node enters the scene tree
+# once all of its children are created and ready
 func _ready() -> void:
 	queue_redraw()
 
