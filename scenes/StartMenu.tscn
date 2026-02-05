@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://m3qiv5aqyhit"]
+
+[ext_resource type="Script" uid="uid://c0l8k2v8p2nav" path="res://scripts/StartMenu.gd" id="1_kmax6"]
+[ext_resource type="PackedScene" uid="uid://bl5314m4wafff" path="res://scenes/main.tscn" id="2_cp7se"]
+
+[node name="StartMenu" type="Control" unique_id=701385939]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_kmax6")
+game_scene = ExtResource("2_cp7se")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=280433951]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/separation = 12
+alignment = 1
+
+[node name="StartButton" type="Button" parent="VBoxContainer" unique_id=720265689]
+layout_mode = 2
+text = "Start Game"
+
+[node name="QuitButton" type="Button" parent="VBoxContainer" unique_id=1420815956]
+layout_mode = 2
+text = "Close Game"
